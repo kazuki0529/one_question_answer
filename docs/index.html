@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <title>一問一答</title>
+    <meta charset="utf-8">
+      <meta name="viewport" content="width = device-width, initial-scale = 1, 
+               maximum-scale = 1, minimum-scale = 1, user-scalable = no, minimal-ui" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <!-- Color theme for statusbar -->
+    <meta name="theme-color" content="#2196f3">
+    <!-- framework7 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/framework7/1.6.4/css/framework7.ios.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/framework7/1.6.4/css/framework7.ios.colors.min.css" /> 
+    <!-- animate.css-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.5.1" type="text/css">
+  </head>
+  <body>
+    <!-- メニューボタン押したときのサイドバー -->
+    <div class="panel-overlay"></div>
+    
+    <div class="panel panel-left panel-reveal">
+      <div class = "content-block">
+        <p>Left Panel content</p>
+        <p><a href = "#" class = "close-panel">Close me</a></p>
+      </div>
+    </div>
+
+    <!-- 問題選択画面 -->
+    <template id="main-page">
+      <div class="views">
+        <div class="view view-main">
+          <!-- Naviメニュー-->
+          <div class="navbar">
+            <div class="navbar-inner">
+              <div class="left">
+                <a href="#" class="open-panel">
+                  <i class="icon icon-bars"></i>
+                </a>
+              </div>
+              <div class="center sliding">一問一答</div>
+              <div class="right"></div>
+            </div>
+          </div>
+
+          <!-- ツールバー -->
+          <div class="toolbar">
+            <div class="toolbar-inner">
+              <a href="#" class="link">Link 1</a>
+              <a href="#" class="link">Link 2</a>
+            </div>
+          </div>
+
+          <div class="pages">
+            <!-- メインコンテンツ -->
+            <div data-page="home" class="page navbar-fixed">
+              <!-- 問題選択 -->
+              <div class="page-content" v-if="screen === SCREEN_STATUS.QUESTION_SELECTING">
+                <div class="card" v-for="( q, i ) in question.list">
+                  <div class="card-header">{{q.title}}</div>
+                  <div class="card-content">
+                    <div class="card-content-inner">{{q.description}}</div>
+                  </div>
+                  <div class="card-footer">
+                    <a href="#" class="button button-fill color-blue" v-on:click="questionSelect(q.url)">
+                      開始
+                    </a>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- 一問一答 -->
+              <div class="page-content" v-else-if="screen === SCREEN_STATUS.QUESTION_SELECTED">
+                <div class="card">
+                  <div class="card-header">{{question.selected[answer.index].question}}</div>
+                  <div class="card-content">
+                    <div class="card-content-inner">
+                      <div class="list-block">
+                        <ul>
+                          <li v-for="( ans, i ) in question.selected[answer.index].selections">
+                            <a href="#" class="item-link item-content" v-on:click="answerSelect(i)">
+                              <div class="item-media">{{ans.symbol}}</div>
+                              <div class="item-inner">
+                                <div class="item-title"> {{ans.label}}</div>
+                              </div>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </template>
+
+    <div id="app"></div>
+  </body>
+  <!-- Vue.js -->
+  <script src="https://jp.vuejs.org/js/vue.min.js"></script>
+  <!-- framework7 -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/framework7/1.6.4/js/framework7.min.js"></script>
+  <!-- axios -->
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <!-- app script -->
+  <script type="text/javascript" src="./js/main.js"></script>
+</html>

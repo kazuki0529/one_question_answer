@@ -1,0 +1,42 @@
+[
+	{
+		"question": "答えは簡単です。１＋１は？",
+		"selections": [{
+				"symbol": "A",
+				"label": "２",
+				"isCorrect": false
+			},
+			{
+				"symbol": "B",
+				"label": "田んぼの田",
+				"isCorrect": false
+			},
+			{
+				"symbol": "C",
+				"label": "簡単",
+				"isCorrect": true
+			},
+			{
+				"symbol": "D",
+				"label": "答えは沈黙…！",
+				"isCorrect": true
+			}
+		],
+		"comment": "答えは簡単って言っているじゃないですか。小学生の時にやったよね。"
+	},
+	{
+		"question": "パンはパンでも食べられないパンは？",
+		"selections": [{
+				"symbol": "A",
+				"label": "フライパン",
+				"isCorrect": true
+			},
+			{
+				"symbol": "B",
+				"label": "パンダ",
+				"isCorrect": false
+			}
+		],
+		"comment": "いろんな答えはある。"
+	}
+]
